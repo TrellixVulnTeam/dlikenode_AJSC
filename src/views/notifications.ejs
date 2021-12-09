@@ -1,0 +1,27 @@
+<%- include('./common/header') %>
+<div id="root">
+    <div class="body-wrap">
+        <main class="main">
+            <div class="middle-section ms-width">
+                <div class="Home-wrapper">
+                    <%- include('./common/topnav') %>
+                    <div class="post-header-wrapper">
+                        <div class="profile-header-back">
+                            <div class="header-back-wrapper"><img src="https://img.icons8.com/windows/24/1da1f2/long-arrow-left.png" class="back_btn" /></div>
+                        </div>
+                        <div class="middle-header-content"> Notifications</div>
+                    </div>
+                    <div class="explore-nav-menu"><div class="explore-nav-item activeTab">Activity</div></div>
+                    <table class="table tanx_table">
+                        <tbody>
+                            <% activities.forEach(function(activity) { %><tr><td class="f_16"><%- activity %></td></tr><% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <%- include('./common/rnav', {category: category}) %>
+        </main>
+        <%- include('./common/lnav', {lnav: "notic"}) %>>
+    </div>
+</div>
+<%- include('./common/footer') %>

@@ -1,0 +1,25 @@
+<%- include('./header') %>
+<div id="root">
+    <div class="body-wrap" style="">
+        <main class="main">
+            <div class="middle-section ms-width">
+                <div class="Home-wrapper">
+                    <%- include('./topnav') %>
+	            	<div class="post-header-wrapper">
+	                    <div class="profile-header-back">
+	                        <div class="header-back-wrapper"><img src="https://img.icons8.com/windows/24/1da1f2/long-arrow-left.png" class="back_btn" /></div>
+	                    </div>
+	                    <div class="middle-header-content"><b>Not Found</b></div>
+	                </div>
+                    <div style="text-align:center;">
+                    	<h1 style="text-align:center;font-size: 180px;">404</h1>
+                    	<h2>Sorry, we can not find this page</h2>
+                    </div>
+                </div>
+            </div>
+            <%- include('./rnav', {category: category}) %>
+        </main>
+        <%- include('./lnav') %>
+    </div>
+</div>
+<%- include('./footer') %>

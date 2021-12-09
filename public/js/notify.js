@@ -1,0 +1,1 @@
+$(document).ready(function () {$.ajax({url: '/notify',type: 'POST',data: JSON.stringify({ notice: 'new' }),contentType: 'application/json',success: function(data)  {} }); });

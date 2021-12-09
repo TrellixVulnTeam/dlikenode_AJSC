@@ -1,0 +1,47 @@
+<%- include('./common/header') %>
+<div id="root">
+    <div class="body-wrap" style="">
+        <main class="main">
+            <div class="middle-section ms-width">
+                <div class="Home-wrapper">
+                    <%- include('./common/topnav') %>
+                    <div class="share_link">
+                        <div class="share-block"><h4>Share To Get Rewarded</h4></div>
+                        <div class="form-group"><input type="text" class="form-control" id="url_field" required="true" placeholder="Enter URL"></div>
+                        <div class="wel_sec"><div class="Nav-entry-link share_me"><span class="Nav-main-btn" id="share_plus">Share</span></div></div>
+                        <div class="wel_sec_msg">Must read<span class="share_help"> <a href="/help"> Terms &amp; Conditions</a></span>  for sharing!</div>
+                    </div> 
+                    <div class="edit_psot" style="display: none;">
+                        <input type="hidden" name="url_link" class="url_link" value="">
+                        <div class="post_img card-image-link"><img class="link_image" src="" alt=""/></div>
+                        <div class="data-title"></div>
+                        <textarea class="data-desc" rows="3" id="post_desc"></textarea>
+                        <div class="link_bottom">
+                            <p><img src="https://img.icons8.com/ios/10/000000/link.png"/> <span id="domain_name"></span></p>
+                            <select name="category" id="share_cat">
+                                <option value="0">Select Category</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Tags separated by space" class="share_tags" />
+                        <div class="wel_sec"><div class="Nav-entry-link share_new_post"><span class="Nav-main-btn edit_post_txt">Share</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <%- include('./common/rnav', {category: category}) %>
+        </main>
+        <%- include('./common/lnav') %>
+    </div>
+</div>
+<%- include('./common/footer') %>
+<script type="text/javascript">
+var selectCat = document.getElementById("share_cat");
+var catArray = "<%= category %>";
+var categories = catArray.split(",");
+for(var i = 0; i < categories.length; i++) {
+    var opt = categories[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    selectCat.appendChild(el);
+}
+</script>

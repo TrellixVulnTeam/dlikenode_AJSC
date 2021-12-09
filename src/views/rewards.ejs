@@ -1,0 +1,93 @@
+<%- include('./common/header') %>
+<%  let votesNow = todayVotes.votes; %>
+<script>
+    var countDownDate = 0;
+    function counter() {
+        setInterval(() => {
+            var date = new Date().toLocaleString("en-US", { timeZone: "Europe/London"});
+            var countDownDate = new Date(date);
+            var i = 60; var h = 24 - countDownDate.getHours();
+            if (h < 10) {h = "0" + h;}
+            var m = 59 - countDownDate.getMinutes();
+            if (m < 10) {m = "0" + m;}
+            var s = countDownDate.getSeconds();
+            s = i - s;
+            if (s < 10) {s = "0" + s;}
+            str = h + ":" + m + ":" + s;
+            i++;
+            //document.getElementByClass("dividendCountDown").innerHTML = str;
+            $(".dividendCountDown").html(str);
+        }, 1000);
+    };
+    counter();
+</script>
+<div id="root">
+    <div class="body-wrap" style="">
+        <main class="main">
+            <div class="middle-section ms-width">
+                <div class="Home-wrapper">
+                    <%- include('./common/topnav') %>
+                    <div class="post-header-wrapper">
+                        <div class="profile-header-back">
+                            <div class="header-back-wrapper"><img src="https://img.icons8.com/windows/24/1da1f2/long-arrow-left.png" class="back_btn" /></div>
+                        </div>
+                        <div class="middle-header-content"> Reward Pool</div>
+                    </div>
+                    <div class="reward_sec">
+                        <div><h4>TOK Daily Reward Pool</h4></div>
+                        <div class="reward_msg">
+                            A simple proof of likes network where every like generates 1 TOK. This token is distributed among all contributors of our community as per the below given reward pool. The more interactions you have, more will be the earnings.
+                        </div>
+                        <div><span class="reward_pool"></span></div>
+                        <div class="rewards_daily">
+                            <div class="rewards_daily_sec">
+                                <h3>
+                                    <div class="today_pool">Reward Pool Today</div>
+                                    <div class="reward_amount">Likes Till Now: <%- votesNow %>
+                                    </div>
+                                </h3>
+                                <form class="reward_form">
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Authors </span></div><div><span><%- (votesNow*0.1).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Curators </span></div><div><span><%- (votesNow*0.05).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Affiliates / Airdrop </span></div><div><span><%- (votesNow*0.05).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Staking </span></div><div><span><%- (votesNow*0.2).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">LP Mining </span></div><div><span><%- (votesNow*0.3).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Witnesses </span></div><div><span><%- (votesNow*0.11).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">DAF </span></div><div><span><%- (votesNow*0.03).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Charity </span></div><div><span><%- (votesNow*0.01).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Team </span></div><div><span><%- (votesNow*0.09).toFixed(2) %></span></div>
+                                    </div>
+                                    <div class="row rewards_fileds">
+                                        <div><span class="rside_cat_img">.</span><span class="rewards_type">Foundation </span></div><div><span><%- (votesNow*0.06).toFixed(2) %></span></div>
+                                    </div>
+                                </form>
+                                <p>Time Remaining for Next Reward Pool</p>
+                                <button type="button" class="btn btn-default reward_btn" disabled=""><span class="far fa-clock rewards_clock"></span><span class="dividendCountDown"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%- include('./common/rnav', {cate: category}) %>
+        </main>
+        <%- include('./common/lnav', {lnav: "reward"}) %>
+    </div>
+</div>
+<%- include('./common/footer') %>

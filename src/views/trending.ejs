@@ -1,0 +1,59 @@
+<%- include('./common/header') %>
+    <div class="body-wrap" style="">
+        <main class="main">
+            <div class="middle-section ms-width">
+                <div class="Home-wrapper">
+                    <%- include('./common/topnav') %>
+                    <div class="explore-nav-menu">
+                        <div class="explore-nav-item" onclick="window.location.href='/'">Latest</div>
+                        <div class="explore-nav-item activeTab">Trending</div>
+                    </div>
+                    <% 
+                    articles.forEach(function(article) { 
+                    let tags = article.json.tags;
+                    let metatags = tags.map(s => '<a href="/tags/'+s+'">#'+s+'</a>').join(' ');
+                    var catg = article.json.category; var category = catg.charAt(0).toUpperCase() + catg.slice(1);let upvotes=JSON.stringify(article.votes);
+                    %>
+                    <div>
+                        <div class="inner-card-wrapper">
+                            <div class="card-userPic-wrapper">
+                                <a href="/profile/<%- article.author %>"><%if(article.user){%><div><img alt="<%- article.author %>" width="100%" height="49px" src="<%- article.user.profile.avatar%>" style="home_pro_pic"></div><%}else{%><div><img alt="<%- article.author %>" width="100%" height="49px" src="/images/user.png" class="home_pro_pic"></div><%}%></a>
+                            </div>
+                            <div class="card-content-wrapper">
+                                <div class="card-content-header">
+                                    <div class="card-header-detail"><span class="card-header-username"><a href="/profile/<%- article.author %>">@<b><%- article.author %></b></a></span><span> <small style="color: #657786;">in</small> <a href="/category/<%- (article.json.category).toLowerCase() %>" style="color:#45b1f3;"><%- category %></a></span><span class="card-header-dot">·</span><span class="card-header-date"><%- moment.utc(article.ts).fromNow()%></span></div>
+                                    <div class="card-header-more"></div>
+                                </div>
+                                <div class="card-content-info" style="font-weight: 600;padding-top: 10px"><a href="/post/<%- article.author %>/<%- article.link %>"><%- article.json.title %></a></div>
+                                <div class="card-content-info" style="color:#45b1f3;padding: 8px 0 4px 0;"><%- metatags.toString() %></div>
+                                <div class="card-content-images">
+                                    <a href="/post/<%- article.author %>/<%- article.link %>"><div class="card-image-link"><img alt="" src="<%- article.json.image %>"></div></a>
+                                </div>
+                                <div class="card-buttons-wrapper likes_section">
+                                    <div class="card-button-wrap heart-wrap" style="justify-content: space-between;">
+                                        <div class="card-icon heart-icon">
+                                            <% if((loguser) && upvotes.includes(loguser)){ %>
+                                            <img src="https://img.icons8.com/material-rounded/20/fa314a/like.png"/>
+                                            <% }else{ %>
+                                                <span class="hov_vote" data-permlink="<%- article.link %>" data-author="<%- article.author %>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 9.229c.234-1.12 1.547-6.229 5.382-6.229 2.22 0 4.618 1.551 4.618 5.003 0 3.907-3.627 8.47-10 12.629-6.373-4.159-10-8.722-10-12.629 0-3.484 2.369-5.005 4.577-5.005 3.923 0 5.145 5.126 5.423 6.231zm-12-1.226c0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-7.962-9.648-9.028-12-3.737-2.338-5.262-12-4.27-12 3.737z"/></svg>
+                                                  </span>
+                                            <%}%>
+                                        </div>
+                                        <div class="card-icon-value" style="opacity: 1;"><%- article.likes %></div>
+                                    </div>
+                                    <div class="card-button-wrap"><%- ((article.likes)*0.1).toFixed(2) %> TOK</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-edit" style="display: none;"></div>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+            <%- include('./common/rnav', {category: category}) %>
+        </main>
+        <%- include('./common/lnav') %>
+    </div>
+</div>
+<%- include('./common/footer') %>
